@@ -3,7 +3,7 @@ function BasicScore(){
     const Score = 25000;
     console.log("25000")
 }
-//玩家名稱
+//紀錄玩家名稱
 function PlayerNames(){
     var PlayerNameArr = []
     for (var i = 0; i< 4 ; i++){
@@ -13,7 +13,7 @@ function PlayerNames(){
     }
 }
 
-//對局開始按鈕
+//對局開始&紀錄按鈕
 document.getElementById("button").addEventListener("click",BasicScore);
 document.getElementById("button1").addEventListener("click",PlayerNames);
 
