@@ -4,15 +4,18 @@ function BasicScore(){
     console.log("25000")
 }
 //玩家名稱
-var PlayerNameArr = []
-function AddPlayerName(index){
-   var PlayerName = document.getElementById("PlayerName"+ index).value;
-    PlayerNameArr.push(PlayerName);
+function PlayerNames(){
+    var PlayerNameArr = []
+    for (var i = 0; i< 4 ; i++){
+        var PlayerName = document.getElementById("PlayerName"+ i).value;
+        PlayerNameArr.push(PlayerName);
         console.log(PlayerNameArr)
+    }
 }
+
 //對局開始按鈕
 document.getElementById("button").addEventListener("click",BasicScore);
-document.getElementById("button1").addEventListener("click",AddPlayerName);
+document.getElementById("button1").addEventListener("click",PlayerNames);
 
 //翻數符數
 function calculate(){
