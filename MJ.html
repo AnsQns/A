@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>日麻點數計算</title>
     <link rel="stylesheet" href="style.css">
@@ -19,6 +19,15 @@
             <input type="text" ID="PlayerName3" placeholder="輸入姓名" /></p>
 <!-- Confirm information butt -->
     <button ID="button">對局開始</button><button ID="button1">紀錄</button>
+    <p>請輸入翻數：</p>
+    <input type="text" id="fanNumber">
+    <p>請輸入符數：</p>
+    <input type="text" id="fuNumber">
+    <button onclick="calculate()">計算</button>
+    <p id="result"></p>
+
+
+
     <script src="main.js"></script>
 </body>
 </html>
