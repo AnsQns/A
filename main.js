@@ -24,7 +24,7 @@ function calculate(){
     var result1Eleent = document.getElementById("result1");
     var result2Eleent = document.getElementById("result2");
     
-    // 計算點數
+    // 計算點數(親家)
     switch (fuNumber) {
         case 20:
             switch (fanNumber) {
