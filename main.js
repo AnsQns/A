@@ -21,46 +21,56 @@ function calculate(){
     //取得html文件值
     var fanNumber =parseInt(document.getElementById("fanNumber").value);
     var fuNumber = parseInt(document.getElementById("fuNumber").value);
-    var result1Eleent = parseInt(document.getElementById("result1"));
-    var result2Eleent = parseInt(document.getElementById("result2"));
+    var result1Eleent = document.getElementById("result1");
+    var result2Eleent = document.getElementById("result2");
     
-    //顯示飜數符數
-    result1Eleent.innerText = fanNumber + "翻" + fuNumber + "符";
-    
-    //計算飜數
-    if (fanNumber === 1){
-        calculate1();
-    } else if (fanNumber === 2){
-        calculate1();
-    } else if (fanNumber === 3){
-        calculate1();
-    } else if (fanNumber === 4){
-        calculate1();
-    } else if (fanNumber === 5){
-        result2Eleent.innerText ="滿貫";
-    } else if (fanNumber === 6 || fanNumber === 7){
-        result2Eleent.innerText = "倍滿";
-    } else if (fanNumber === 8 || fanNumber === 10){
-        result2Eleent.innerText = "跳滿";
-    } else if (fanNumber === 11 || fanNumber === 12){
-        result2Eleent.innerText = "三倍滿";
-    } else if (fanNumber >=13){
-        result2Eleent.innerText = "役滿";
-    }else{
-        result2Eleent.innerText = "重新輸入";
-    }
-        function calculate1(){
-        //取得html文件值
-         var fanNumber =parseInt(document.getElementById("fanNumber").value);
-         var fuNumber = parseInt(document.getElementById("fuNumber").value);
-
-        //定義符數計算
-         var FU1 = 6 * fuNumber * Math.pow(2, fanNumber + 2);
-         var FU2 = 4 * fuNumber * Math.pow(2, fanNumber + 2);
-
-        //顯示點數
-         var result2Eleent = document.getElementById("result2");
-         result2Eleent.innerText = FU1 + "點" + FU2 +"點";
+    //計算飜數(親)
+    if (fuNumber === 20){
+        switch (fanNumber) {
+            case 1:
+                result1Eleent.innerText = "榮和：" + 1500 + "點";
+                result2Eleent.innerText = "自摸：" + 500 + " ALL";
+                break;
+            case 2:
+                result1Eleent.innerText = "榮和：" + 2000 + "點";
+                result2Eleent.innerText = "自摸：" + 700 + " ALL";
+                break;
+            case 3:
+                result1Eleent.innerText = "榮和：" + 2400 + "點";
+                result2Eleent.innerText = "自摸：" + 800 + " ALL";
+                break;
+            case 4:
+                result1Eleent.innerText = "榮和：" + 2900 + "點";
+                result2Eleent.innerText = "自摸：" + 100 + " ALL";
+                break;
+            case 5:
+                result1Eleent.innerText = "榮和：" + 12000 + "點";
+                result2Eleent.innerText = "自摸：" + 4000 + " ALL";
+                break;
+            case 6:
+            case 7:
+                result1Eleent.innerText = "榮和：" + 18000 + "點";
+                result2Eleent.innerText = "自摸：" + 6000 + " ALL";
+                break;
+            case 8:
+            case 9:
+            case 10:
+                result1Eleent.innerText = "榮和：" + 24000 + "點";
+                result2Eleent.innerText = "自摸：" + 8000 + " ALL";
+                break;
+            case 11:
+            case 12:
+                result1Eleent.innerText = "榮和：" + 36000 + "點";
+                result2Eleent.innerText = "自摸：" + 12000 + " ALL";
+                break;
+            default:
+                if(fanNumber >= 13){
+                    result1Eleent.innerText = "榮和：" + 48000 + "點";
+                    result2Eleent.innerText = "自摸：" + 16000 + " ALL";
+                }else{
+                    result1Eleent.innerText = "重新輸入";
+                }
+                break;
         }
-    
+    }
 }
