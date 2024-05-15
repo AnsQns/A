@@ -1,7 +1,22 @@
 body {
-    background-color: black;
+    background-color: rgb(82, 68, 68);
 }
 
 p { 
     color: bisque;
 }
+.option-container {
+    display: flex;
+    /*justify-content: center;*/
+  }
+  .option {
+    margin: 5px;
+    padding: 10px 20px;
+    border: 1px solid #950c0c;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .option.selected {
+    background-color: #bedb15;
+    color: #830404;
+  }
