@@ -8,7 +8,7 @@
 </head>
 <body>
 <!-- Calculator main subject -->
-    <p><label for="PlayName">玩家名稱：</label></p>
+    <!--<p><label for="PlayName">玩家名稱：</label></p>
         <p><label for="hand">東</label>
             <input type="text" ID="PlayerName0" placeholder="輸入姓名" /></p>
         <p><label for="hand">南</label>
@@ -16,20 +16,24 @@
         <p><label for="hand">西</label>
             <input type="text" ID="PlayerName2" placeholder="輸入姓名" /></p>
         <p><label for="hand">北</label>
-            <input type="text" ID="PlayerName3" placeholder="輸入姓名" /></p>
+            <input type="text" ID="PlayerName3" placeholder="輸入姓名" /></p>-->
 <!-- Confirm information butt -->
-    <button ID="button">對局開始</button><button ID="button1">紀錄</button>
+    <!--<button ID="button">對局開始</button><button ID="button1">紀錄</button>-->
     <p>請輸入翻數：</p>
     <input type="text" id="fanNumber">
     <p>請輸入符數：</p>
     <input type="text" id="fuNumber">
-    <button onclick="calculate()">計算</button>
+    <div class="option-container">
+        <div class="option" onclick="selectOption('親家')">親家</div>
+        <div class="option" onclick="selectOption('子家')">子家</div>
+    </div>
     <p id="result1"></p>
     <p id="result2"></p>
 
 
 
-
+    <script src="chin.js"></script>
+    <script src="zih.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
