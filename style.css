@@ -1,22 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap');
+
 body {
-    background-color: rgb(82, 68, 68);
+    background-color: #363f2b;
 }
 
+/* 網頁總體字形 */
 p { 
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
     color: bisque;
+    font-size: 2.3ch;
 }
+
+/* 輸入欄本體動畫 */
+input[type=text] {
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+  transition: width 0.3s ease-in-out;
+}
+input[type=text]:hover {
+  padding: 14px 22px;
+  border:0px;
+}
+input[type=text]:focus {
+  width: 15%;
+}
+
+/* 按鈕本體 */
 .option-container {
-    display: flex;
-    /*justify-content: center;*/
+  font-family: "Noto Sans TC", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
   }
+
+
+/* 按鈕選擇前 */
   .option {
+    width:fit-content;
     margin: 5px;
     padding: 10px 20px;
-    border: 1px solid #950c0c;
+    border: 2px solid #9e0c0c;
+    background-color: antiquewhite;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 10px;
+/* 動畫 */
+    transition: background-color 0.3s ease-out 100ms;
   }
+/* 鼠標event改變 */
+  div.option:hover {
+    background-color: #d9e2a7;
+    padding: 12px 22px;
+    border: 0px;
+  }
+
+/* 按鈕選擇後 */
   .option.selected {
-    background-color: #bedb15;
-    color: #830404;
+    width: fit-content;
+    color: #740c0c;
+    background-color: #889732;
   }
