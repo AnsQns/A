@@ -8,21 +8,30 @@
 </head>
 <body>
 <!-- Calculator main subject -->
-    <!--<p><label for="PlayName">玩家名稱：</label></p>
-        <p><label for="hand">東</label>
-            <input type="text" ID="PlayerName0" placeholder="輸入姓名" /></p>
-        <p><label for="hand">南</label>
-            <input type="text" ID="PlayerName1" placeholder="輸入姓名" /></p>
-        <p><label for="hand">西</label>
-            <input type="text" ID="PlayerName2" placeholder="輸入姓名" /></p>
-        <p><label for="hand">北</label>
-            <input type="text" ID="PlayerName3" placeholder="輸入姓名" /></p>-->
 <!-- Confirm information butt -->
-    <!--<button ID="button">對局開始</button><button ID="button1">紀錄</button>-->
-    <p>請輸入翻數：</p>
-    <input type="text" id="fanNumber">
-    <p>請輸入符數：</p>
-    <input type="text" id="fuNumber">
+    <p>請選擇翻數：</p>
+    <select id="fanNumber">
+        <option value="1">1番</option>
+        <option value="2">2番</option>
+        <option value="3">3番</option>
+        <option value="4">4番</option>
+        <option value="5">滿貫</option>
+        <option value="6,7">跳滿</option>
+        <option value="8,9,10">倍滿</option>
+        <option value="11,12">三倍滿</option>
+        <option value="13">役滿</option>
+        <option value="26">二倍役滿</option>
+    </select>
+    <p>請選擇符數：</p>
+    <select id="fuNumber">
+        <option value="20">20符</option>
+        <option value="25">25符</option>
+        <option value="30">30符</option>
+        <option value="40">40符</option>
+        <option value="50">50符</option>
+        <option value="60">60符</option>
+        <option value="70">70符</option>
+    </select>
     <div class="option-container">
         <div class="option" onclick="selectOption('親家')">親家</div>
         <div class="option" onclick="selectOption('子家')">子家</div>
@@ -32,8 +41,7 @@
 
 
 
-    <script src="chin.js"></script>
-    <script src="zih.js"></script>
+    <script src="Points.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
