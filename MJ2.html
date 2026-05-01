@@ -1,9 +1,31 @@
 <!DOCTYPE html>
-<html lang="en" lang="en">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>對局中</title>
+    <title>Test</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container">
+        <div class="north draggable" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)" id="north">
+            <label for="north-input">北:</label>
+            <input type="text" id="north-input" onblur="lockInput('north')" onkeydown="checkEnter(event, 'north')">
+        </div>
+        <div class="west draggable" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)" id="west">
+            <label for="west-input">西:</label>
+            <input type="text" id="west-input" onblur="lockInput('west')" onkeydown="checkEnter(event, 'west')">
+        </div>
+        <div class="center"></div>
+        <div class="east draggable" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)" id="east">
+            <label for="east-input">東:</label>
+            <input type="text" id="east-input" onblur="lockInput('east')" onkeydown="checkEnter(event, 'east')">
+        </div>
+        <div class="south draggable" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)" id="south">
+            <label for="south-input">南:</label>
+            <input type="text" id="south-input" onblur="lockInput('south')" onkeydown="checkEnter(event, 'south')">
+        </div>
+    </div>
+    <script src="main2.js"></script>
 </body>
+</html>

@@ -67,3 +67,24 @@ input[type=text]:focus {
     color: #740c0c;
     background-color: #889732;
   }
+  .container {
+    display: grid;
+    grid-template-areas:
+        "north north north"
+        "west center east"
+        "south south south";
+    gap: 10px;
+    text-align: center;
+    margin: 20px;
+}
+.north { grid-area: north; }
+.south { grid-area: south; }
+.east { grid-area: east; }
+.west { grid-area: west; }
+.center { grid-area: center; }
+input[disabled] {
+    background-color: #f0f0f0;
+}
+.draggable {
+    cursor: move;
+}

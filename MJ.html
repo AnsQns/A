@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<!-- Calculator main subject -->
-<!-- Confirm information butt -->
     <p>請選擇翻數：</p>
     <select id="fanNumber">
         <option value="1">1番</option>
@@ -16,9 +14,9 @@
         <option value="3">3番</option>
         <option value="4">4番</option>
         <option value="5">滿貫</option>
-        <option value="6,7">跳滿</option>
-        <option value="8,9,10">倍滿</option>
-        <option value="11,12">三倍滿</option>
+        <option value="6">跳滿</option>
+        <option value="8">倍滿</option>
+        <option value="11">三倍滿</option>
         <option value="13">役滿</option>
         <option value="26">二倍役滿</option>
     </select>
@@ -33,15 +31,19 @@
         <option value="70">70符</option>
     </select>
     <div class="option-container">
-        <div class="option" onclick="selectOption('親家')">親家</div>
-        <div class="option" onclick="selectOption('子家')">子家</div>
+        <div class="option" id="btn-dealer"    onclick="selectOption(true)">親家</div>
+        <div class="option" id="btn-nondealer" onclick="selectOption(false)">子家</div>
     </div>
     <p id="result1"></p>
     <p id="result2"></p>
 
-
-
     <script src="Points.js"></script>
-    <script src="main.js"></script>
+    <script>
+    function selectOption(isDealer) {
+        document.getElementById('btn-dealer').classList.toggle('selected', isDealer);
+        document.getElementById('btn-nondealer').classList.toggle('selected', !isDealer);
+        calculate(isDealer);
+    }
+    </script>
 </body>
 </html>
