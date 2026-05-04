@@ -65,6 +65,9 @@ function drag(event) {
     event.currentTarget.classList.add('dragging');
     event.dataTransfer.setData('text', event.currentTarget.id);
 }
+function dragEnd(event) {
+    event.currentTarget.classList.remove('dragging');
+}
 function allowDrop(event) { event.preventDefault(); }
 function enter(event) {
     if (!event.currentTarget.contains(event.relatedTarget))
@@ -147,7 +150,9 @@ function selectWinner(dir) {
 
 function selectLoser(dir) {
     settle.loser = dir;
-    buildLoserBtns();
+    document.querySelectorAll('#loser-row .settle-player-btn').forEach(b =>
+        b.classList.toggle('selected', b.dataset.dir === dir));
+    updatePreview();
 }
 
 function buildLoserBtns() {
@@ -284,6 +289,7 @@ function resetSettle() {
     document.getElementById('btn-ron').classList.remove('selected');
     document.getElementById('btn-tsumo').classList.remove('selected');
     document.getElementById('ron-section').classList.add('hidden');
+    document.getElementById('loser-row').innerHTML = '';
     document.querySelectorAll('[data-fan],[data-fu]').forEach(b => b.classList.remove('selected'));
     document.querySelectorAll('[data-fu]').forEach(b => { b.disabled = false; b.classList.remove('opt-disabled'); });
     document.getElementById('settle-fu-card').classList.remove('hidden');
