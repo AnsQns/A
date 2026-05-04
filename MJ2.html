@@ -1,31 +1,209 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Test</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>座位配置</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="north draggable" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)" id="north">
-            <label for="north-input">北:</label>
-            <input type="text" id="north-input" onblur="lockInput('north')" onkeydown="checkEnter(event, 'north')">
+  <div class="app">
+    <header class="hdr">
+      <h1>座位配置</h1>
+      <p>輸入名稱後按 Enter 確定・點擊點數可修改</p>
+      <nav><a href="MJ.html">← 點數計算</a></nav>
+    </header>
+
+    <div class="game-layout">
+    <!-- ── Compass ── -->
+    <div class="game-left">
+    <div class="table-wrap">
+      <div class="compass">
+
+        <div class="north draggable seat"
+             draggable="true"
+             ondragstart="drag(event)" ondrop="drop(event)"
+             ondragover="allowDrop(event)" ondragenter="enter(event)"
+             ondragleave="leave(event)" id="north">
+          <div class="seat-top">
+            <span class="wind">北</span>
+            <button class="dealer-tag" id="north-dealer-tag" onclick="setDealer('north')">親</button>
+          </div>
+          <input type="text" id="north-input" placeholder="玩家名稱"
+                 onblur="lockInput('north')" onkeydown="checkEnter(event,'north')"
+                 oninput="syncName('north')">
+          <div class="pts-wrap">
+            <div class="pts-display" id="north-pts-display" onclick="editPts('north')">
+              <span id="north-pts">25,000</span>
+            </div>
+            <span class="pts-delta" id="north-pts-delta"></span>
+          </div>
         </div>
-        <div class="west draggable" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)" id="west">
-            <label for="west-input">西:</label>
-            <input type="text" id="west-input" onblur="lockInput('west')" onkeydown="checkEnter(event, 'west')">
+
+        <div class="west draggable seat"
+             draggable="true"
+             ondragstart="drag(event)" ondrop="drop(event)"
+             ondragover="allowDrop(event)" ondragenter="enter(event)"
+             ondragleave="leave(event)" id="west">
+          <div class="seat-top">
+            <span class="wind">西</span>
+            <button class="dealer-tag" id="west-dealer-tag" onclick="setDealer('west')">親</button>
+          </div>
+          <input type="text" id="west-input" placeholder="玩家名稱"
+                 onblur="lockInput('west')" onkeydown="checkEnter(event,'west')"
+                 oninput="syncName('west')">
+          <div class="pts-wrap">
+            <div class="pts-display" id="west-pts-display" onclick="editPts('west')">
+              <span id="west-pts">25,000</span>
+            </div>
+            <span class="pts-delta" id="west-pts-delta"></span>
+          </div>
         </div>
-        <div class="center"></div>
-        <div class="east draggable" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)" id="east">
-            <label for="east-input">東:</label>
-            <input type="text" id="east-input" onblur="lockInput('east')" onkeydown="checkEnter(event, 'east')">
+
+        <div class="center center-tile">
+          <span class="kanji">中</span>
         </div>
-        <div class="south draggable" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)" id="south">
-            <label for="south-input">南:</label>
-            <input type="text" id="south-input" onblur="lockInput('south')" onkeydown="checkEnter(event, 'south')">
+
+        <div class="east draggable seat"
+             draggable="true"
+             ondragstart="drag(event)" ondrop="drop(event)"
+             ondragover="allowDrop(event)" ondragenter="enter(event)"
+             ondragleave="leave(event)" id="east">
+          <div class="seat-top">
+            <span class="wind">東</span>
+            <button class="dealer-tag" id="east-dealer-tag" onclick="setDealer('east')">親</button>
+          </div>
+          <input type="text" id="east-input" placeholder="玩家名稱"
+                 onblur="lockInput('east')" onkeydown="checkEnter(event,'east')"
+                 oninput="syncName('east')">
+          <div class="pts-wrap">
+            <div class="pts-display" id="east-pts-display" onclick="editPts('east')">
+              <span id="east-pts">25,000</span>
+            </div>
+            <span class="pts-delta" id="east-pts-delta"></span>
+          </div>
         </div>
+
+        <div class="south draggable seat"
+             draggable="true"
+             ondragstart="drag(event)" ondrop="drop(event)"
+             ondragover="allowDrop(event)" ondragenter="enter(event)"
+             ondragleave="leave(event)" id="south">
+          <div class="seat-top">
+            <span class="wind">南</span>
+            <button class="dealer-tag" id="south-dealer-tag" onclick="setDealer('south')">親</button>
+          </div>
+          <input type="text" id="south-input" placeholder="玩家名稱"
+                 onblur="lockInput('south')" onkeydown="checkEnter(event,'south')"
+                 oninput="syncName('south')">
+          <div class="pts-wrap">
+            <div class="pts-display" id="south-pts-display" onclick="editPts('south')">
+              <span id="south-pts">25,000</span>
+            </div>
+            <span class="pts-delta" id="south-pts-delta"></span>
+          </div>
+        </div>
+
+      </div>
+      <p class="drag-hint">拖曳方位卡牌以交換座位</p>
     </div>
-    <script src="main2.js"></script>
+    </div><!-- /.game-left -->
+
+    <!-- ── Settlement Panel ── -->
+    <div class="game-right">
+    <div class="card settle-card">
+      <div class="settle-head">
+        <span class="card-label" style="margin:0">結算</span>
+        <div class="honba-row">
+          <span class="honba-label">本場</span>
+          <button class="honba-btn" onclick="changeHonba(-1)">−</button>
+          <span class="honba-val" id="honba-val">0</span>
+          <button class="honba-btn" onclick="changeHonba(1)">+</button>
+        </div>
+      </div>
+
+      <hr class="settle-divider">
+
+      <div class="settle-body">
+        <!-- ── Left: who & how ── -->
+        <div class="settle-left">
+          <div class="settle-section">
+            <div class="settle-row-label">贏家</div>
+            <div class="btn-row" id="winner-row">
+              <button class="opt settle-player-btn" data-dir="east"  onclick="selectWinner('east')">
+                <span class="sw">東</span><span class="sn" id="sn-east">—</span>
+              </button>
+              <button class="opt settle-player-btn" data-dir="south" onclick="selectWinner('south')">
+                <span class="sw">南</span><span class="sn" id="sn-south">—</span>
+              </button>
+              <button class="opt settle-player-btn" data-dir="west"  onclick="selectWinner('west')">
+                <span class="sw">西</span><span class="sn" id="sn-west">—</span>
+              </button>
+              <button class="opt settle-player-btn" data-dir="north" onclick="selectWinner('north')">
+                <span class="sw">北</span><span class="sn" id="sn-north">—</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="settle-section">
+            <div class="settle-row-label">方式</div>
+            <div class="btn-row">
+              <button class="opt" id="btn-ron"   onclick="setMethod('ron')">榮和</button>
+              <button class="opt" id="btn-tsumo" onclick="setMethod('tsumo')">自摸</button>
+            </div>
+          </div>
+
+          <!-- Ron: loser selector -->
+          <div id="ron-section" class="hidden">
+            <div class="settle-section">
+              <div class="settle-row-label">放炮者</div>
+              <div class="btn-row" id="loser-row"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Right: fan / fu / preview ── -->
+        <div class="settle-right">
+          <div class="settle-section">
+            <div class="settle-row-label">番數</div>
+            <div class="btn-row">
+              <button class="opt sm" data-fan="1"  onclick="setFan(1)">1番</button>
+              <button class="opt sm" data-fan="2"  onclick="setFan(2)">2番</button>
+              <button class="opt sm" data-fan="3"  onclick="setFan(3)">3番</button>
+              <button class="opt sm" data-fan="4"  onclick="setFan(4)">4番</button>
+              <button class="opt sm special" data-fan="5"  onclick="setFan(5)">滿貫</button>
+              <button class="opt sm special" data-fan="6"  onclick="setFan(6)">跳滿</button>
+              <button class="opt sm special" data-fan="8"  onclick="setFan(8)">倍滿</button>
+              <button class="opt sm special" data-fan="11" onclick="setFan(11)">三倍滿</button>
+              <button class="opt sm special" data-fan="13" onclick="setFan(13)">役滿</button>
+              <button class="opt sm special" data-fan="26" onclick="setFan(26)">二倍役滿</button>
+            </div>
+          </div>
+
+          <div class="settle-section" id="settle-fu-card">
+            <div class="settle-row-label">符數</div>
+            <div class="btn-row">
+              <button class="opt sm" data-fu="20" onclick="setFu(20)">20符</button>
+              <button class="opt sm" data-fu="25" onclick="setFu(25)">25符</button>
+              <button class="opt sm" data-fu="30" onclick="setFu(30)">30符</button>
+              <button class="opt sm" data-fu="40" onclick="setFu(40)">40符</button>
+              <button class="opt sm" data-fu="50" onclick="setFu(50)">50符</button>
+              <button class="opt sm" data-fu="60" onclick="setFu(60)">60符</button>
+              <button class="opt sm" data-fu="70" onclick="setFu(70)">70符</button>
+            </div>
+          </div>
+
+          <div class="pt-preview" id="pt-preview"></div>
+        </div>
+      </div><!-- /.settle-body -->
+
+      <p class="settle-msg" id="settle-msg"></p>
+      <button class="confirm-btn" onclick="confirmSettle()">確認結算</button>
+    </div>
+    </div><!-- /.game-right -->
+    </div><!-- /.game-layout -->
+
+  </div>
+  <script src="main2.js"></script>
 </body>
 </html>

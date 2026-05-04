@@ -1,49 +1,116 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>日麻點數計算</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日麻點數計算</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <p>請選擇翻數：</p>
-    <select id="fanNumber">
-        <option value="1">1番</option>
-        <option value="2">2番</option>
-        <option value="3">3番</option>
-        <option value="4">4番</option>
-        <option value="5">滿貫</option>
-        <option value="6">跳滿</option>
-        <option value="8">倍滿</option>
-        <option value="11">三倍滿</option>
-        <option value="13">役滿</option>
-        <option value="26">二倍役滿</option>
-    </select>
-    <p>請選擇符數：</p>
-    <select id="fuNumber">
-        <option value="20">20符</option>
-        <option value="25">25符</option>
-        <option value="30">30符</option>
-        <option value="40">40符</option>
-        <option value="50">50符</option>
-        <option value="60">60符</option>
-        <option value="70">70符</option>
-    </select>
-    <div class="option-container">
-        <div class="option" id="btn-dealer"    onclick="selectOption(true)">親家</div>
-        <div class="option" id="btn-nondealer" onclick="selectOption(false)">子家</div>
-    </div>
-    <p id="result1"></p>
-    <p id="result2"></p>
+  <div class="app">
+    <header class="hdr">
+      <h1>日麻點數計算</h1>
+      <nav><a href="MJ2.html">座位配置 →</a></nav>
+    </header>
 
-    <script src="Points.js"></script>
-    <script>
-    function selectOption(isDealer) {
-        document.getElementById('btn-dealer').classList.toggle('selected', isDealer);
-        document.getElementById('btn-nondealer').classList.toggle('selected', !isDealer);
-        calculate(isDealer);
+    <!-- Hidden selects read by Points.js -->
+    <select id="fanNumber" hidden>
+      <option value="1">1</option><option value="2">2</option>
+      <option value="3">3</option><option value="4">4</option>
+      <option value="5">5</option><option value="6">6</option>
+      <option value="8">8</option><option value="11">11</option>
+      <option value="13">13</option><option value="26">26</option>
+    </select>
+    <select id="fuNumber" hidden>
+      <option value="20">20</option><option value="25">25</option>
+      <option value="30">30</option><option value="40">40</option>
+      <option value="50">50</option><option value="60">60</option>
+      <option value="70">70</option>
+    </select>
+
+    <!-- Fan selection -->
+    <div class="card">
+      <div class="card-label">翻數</div>
+      <div class="btn-row">
+        <button class="opt" data-fan="1"  onclick="setFan(1)">1番</button>
+        <button class="opt" data-fan="2"  onclick="setFan(2)">2番</button>
+        <button class="opt" data-fan="3"  onclick="setFan(3)">3番</button>
+        <button class="opt" data-fan="4"  onclick="setFan(4)">4番</button>
+        <button class="opt special" data-fan="5"  onclick="setFan(5)">滿貫</button>
+        <button class="opt special" data-fan="6"  onclick="setFan(6)">跳滿</button>
+        <button class="opt special" data-fan="8"  onclick="setFan(8)">倍滿</button>
+        <button class="opt special" data-fan="11" onclick="setFan(11)">三倍滿</button>
+        <button class="opt special" data-fan="13" onclick="setFan(13)">役滿</button>
+        <button class="opt special" data-fan="26" onclick="setFan(26)">二倍役滿</button>
+      </div>
+    </div>
+
+    <!-- Fu selection (hidden when fan ≥ 5) -->
+    <div class="card" id="fu-card">
+      <div class="card-label">符數</div>
+      <div class="btn-row">
+        <button class="opt" data-fu="20" onclick="setFu(20)">20符</button>
+        <button class="opt" data-fu="25" onclick="setFu(25)">25符</button>
+        <button class="opt" data-fu="30" onclick="setFu(30)">30符</button>
+        <button class="opt" data-fu="40" onclick="setFu(40)">40符</button>
+        <button class="opt" data-fu="50" onclick="setFu(50)">50符</button>
+        <button class="opt" data-fu="60" onclick="setFu(60)">60符</button>
+        <button class="opt" data-fu="70" onclick="setFu(70)">70符</button>
+      </div>
+    </div>
+
+    <!-- Dealer / Non-dealer -->
+    <div class="card">
+      <div class="card-label">身份</div>
+      <div class="dealer-row">
+        <button class="dealer-btn" id="btn-dealer"    onclick="selectOption(true)">親家</button>
+        <button class="dealer-btn" id="btn-nondealer" onclick="selectOption(false)">子家</button>
+      </div>
+    </div>
+
+    <!-- Result -->
+    <div class="result" id="result-box">
+      <p id="result1"></p>
+      <p id="result2"></p>
+    </div>
+  </div>
+
+  <script src="Points.js"></script>
+  <script>
+    let _fan = null, _fu = null, _dealer = null;
+
+    function setFan(v) {
+      _fan = v;
+      document.getElementById('fanNumber').value = v;
+      document.querySelectorAll('[data-fan]').forEach(b =>
+        b.classList.toggle('selected', +b.dataset.fan === v));
+      const fuCard = document.getElementById('fu-card');
+      fuCard.classList.toggle('hidden', v >= 5);
+      if (v >= 5) _fu = 20;
+      _try();
     }
-    </script>
+
+    function setFu(v) {
+      _fu = v;
+      document.getElementById('fuNumber').value = v;
+      document.querySelectorAll('[data-fu]').forEach(b =>
+        b.classList.toggle('selected', +b.dataset.fu === v));
+      _try();
+    }
+
+    function selectOption(isDealer) {
+      _dealer = isDealer;
+      document.getElementById('btn-dealer').classList.toggle('selected', isDealer);
+      document.getElementById('btn-nondealer').classList.toggle('selected', !isDealer);
+      _try();
+    }
+
+    function _try() {
+      if (_fan === null || _dealer === null) return;
+      if (_fan < 5 && _fu === null) return;
+      calculate(_dealer);
+      document.getElementById('result-box').classList.add('show');
+    }
+  </script>
 </body>
 </html>
