@@ -1,5 +1,5 @@
 function BasicGame() {
-    window.location.href = 'MJ2.html';
+    window.location.href = 'index.html';
 }
 
 function PlayerNames() {
