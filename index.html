@@ -22,9 +22,9 @@
 
         <div class="north draggable seat"
              draggable="true"
-             ondragstart="drag(event)" ondrop="drop(event)"
-             ondragover="allowDrop(event)" ondragenter="enter(event)"
-             ondragleave="leave(event)" id="north">
+             ondragstart="drag(event)" ondragend="dragEnd(event)"
+             ondrop="drop(event)" ondragover="allowDrop(event)"
+             ondragenter="enter(event)" ondragleave="leave(event)" id="north">
           <div class="seat-top">
             <span class="wind">北</span>
             <button class="dealer-tag" id="north-dealer-tag" onclick="setDealer('north')">親</button>
@@ -42,9 +42,9 @@
 
         <div class="west draggable seat"
              draggable="true"
-             ondragstart="drag(event)" ondrop="drop(event)"
-             ondragover="allowDrop(event)" ondragenter="enter(event)"
-             ondragleave="leave(event)" id="west">
+             ondragstart="drag(event)" ondragend="dragEnd(event)"
+             ondrop="drop(event)" ondragover="allowDrop(event)"
+             ondragenter="enter(event)" ondragleave="leave(event)" id="west">
           <div class="seat-top">
             <span class="wind">西</span>
             <button class="dealer-tag" id="west-dealer-tag" onclick="setDealer('west')">親</button>
@@ -66,9 +66,9 @@
 
         <div class="east draggable seat"
              draggable="true"
-             ondragstart="drag(event)" ondrop="drop(event)"
-             ondragover="allowDrop(event)" ondragenter="enter(event)"
-             ondragleave="leave(event)" id="east">
+             ondragstart="drag(event)" ondragend="dragEnd(event)"
+             ondrop="drop(event)" ondragover="allowDrop(event)"
+             ondragenter="enter(event)" ondragleave="leave(event)" id="east">
           <div class="seat-top">
             <span class="wind">東</span>
             <button class="dealer-tag" id="east-dealer-tag" onclick="setDealer('east')">親</button>
@@ -86,9 +86,9 @@
 
         <div class="south draggable seat"
              draggable="true"
-             ondragstart="drag(event)" ondrop="drop(event)"
-             ondragover="allowDrop(event)" ondragenter="enter(event)"
-             ondragleave="leave(event)" id="south">
+             ondragstart="drag(event)" ondragend="dragEnd(event)"
+             ondrop="drop(event)" ondragover="allowDrop(event)"
+             ondragenter="enter(event)" ondragleave="leave(event)" id="south">
           <div class="seat-top">
             <span class="wind">南</span>
             <button class="dealer-tag" id="south-dealer-tag" onclick="setDealer('south')">親</button>
@@ -113,7 +113,7 @@
     <div class="game-right">
     <div class="card settle-card">
       <div class="settle-head">
-        <span class="card-label" style="margin:0">結算</span>
+        <span class="card-label">結算</span>
         <div class="honba-row">
           <span class="honba-label">本場</span>
           <button class="honba-btn" onclick="changeHonba(-1)">−</button>
