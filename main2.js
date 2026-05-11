@@ -296,6 +296,13 @@ function confirmSettle() {
         document.getElementById('kyotaku-val').textContent = 0;
     }
     DIRS.forEach(d => { pts[d] += deltas[d]; renderPts(d); if (deltas[d]) flashDelta(d, deltas[d]); });
+    if (settle.winner === dealer) {
+        honba++;
+        document.getElementById('honba-val').textContent = honba;
+    } else {
+        honba = 0;
+        document.getElementById('honba-val').textContent = 0;
+    }
     resetSettle();
     showMsg('結算完成', 'success');
 }
