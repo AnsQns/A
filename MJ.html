@@ -85,12 +85,31 @@
       document.querySelectorAll('[data-fan]').forEach(b =>
         b.classList.toggle('selected', +b.dataset.fan === v));
       const fuCard = document.getElementById('fu-card');
-      fuCard.classList.toggle('hidden', v >= 5);
-      if (v >= 5) _fu = 20;
+      const needFu = v < 5;
+      fuCard.classList.toggle('hidden', !needFu);
+      if (!needFu) {
+        _fu = null;
+        document.querySelectorAll('[data-fu]').forEach(b => {
+          b.classList.remove('selected');
+          b.disabled = false;
+          b.classList.remove('opt-disabled');
+        });
+      } else {
+        document.querySelectorAll('[data-fu]').forEach(b => {
+          const disabled = v === 1 && (+b.dataset.fu === 20 || +b.dataset.fu === 25);
+          b.disabled = disabled;
+          b.classList.toggle('opt-disabled', disabled);
+          if (disabled && _fu === +b.dataset.fu) {
+            _fu = null;
+            b.classList.remove('selected');
+          }
+        });
+      }
       _try();
     }
 
     function setFu(v) {
+      if (document.querySelector(`[data-fu="${v}"]`)?.disabled) return;
       _fu = v;
       document.getElementById('fuNumber').value = v;
       document.querySelectorAll('[data-fu]').forEach(b =>

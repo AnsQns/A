@@ -50,8 +50,9 @@ function calcPoints(fan, fu, isDealer) {
 
 // ── State ──────────────────────────────────────────────────────────
 const pts = { north: 25000, south: 25000, east: 25000, west: 25000 };
-let dealer = 'east';
-let honba  = 0;
+let dealer   = 'east';
+let honba    = 0;
+let kyotaku  = 0;
 const settle = { winner: null, method: null, loser: null, fan: null, fu: null };
 
 // ── Drag & Drop ────────────────────────────────────────────────────
@@ -118,10 +119,15 @@ function flashDelta(dir, delta) {
     el.classList.add('flash');
 }
 
-// ── Honba ──────────────────────────────────────────────────────────
+// ── Honba / Kyotaku ────────────────────────────────────────────────
 function changeHonba(delta) {
     honba = Math.max(0, honba + delta);
     document.getElementById('honba-val').textContent = honba;
+    updatePreview();
+}
+function changeKyotaku(delta) {
+    kyotaku = Math.max(0, kyotaku + delta);
+    document.getElementById('kyotaku-val').textContent = kyotaku;
     updatePreview();
 }
 
@@ -244,6 +250,12 @@ function updatePreview() {
         html = ptLine('自摸　子家各付', result.tsumo.child,  hE)
              + ptLine('　　　親家付',   result.tsumo.parent, hE);
     }
+    if (kyotaku > 0) {
+        html += `<div class="pt-row">
+            <span class="pt-label">供託</span>
+            <span class="pt-val">+${fmt(kyotaku * 1000)}</span><span class="pt-unit"> 點</span>
+        </div>`;
+    }
     box.innerHTML = html;
 }
 
@@ -278,6 +290,11 @@ function confirmSettle() {
         });
     }
 
+    if (kyotaku > 0) {
+        deltas[settle.winner] += kyotaku * 1000;
+        kyotaku = 0;
+        document.getElementById('kyotaku-val').textContent = 0;
+    }
     DIRS.forEach(d => { pts[d] += deltas[d]; renderPts(d); if (deltas[d]) flashDelta(d, deltas[d]); });
     resetSettle();
     showMsg('結算完成', 'success');

@@ -114,11 +114,19 @@
     <div class="card settle-card">
       <div class="settle-head">
         <span class="card-label">結算</span>
-        <div class="honba-row">
-          <span class="honba-label">本場</span>
-          <button class="honba-btn" onclick="changeHonba(-1)">−</button>
-          <span class="honba-val" id="honba-val">0</span>
-          <button class="honba-btn" onclick="changeHonba(1)">+</button>
+        <div class="settle-counters">
+          <div class="honba-row">
+            <span class="honba-label">本場</span>
+            <button class="honba-btn" onclick="changeHonba(-1)">−</button>
+            <span class="honba-val" id="honba-val">0</span>
+            <button class="honba-btn" onclick="changeHonba(1)">+</button>
+          </div>
+          <div class="honba-row">
+            <span class="honba-label">供託</span>
+            <button class="honba-btn" onclick="changeKyotaku(-1)">−</button>
+            <span class="honba-val" id="kyotaku-val">0</span>
+            <button class="honba-btn" onclick="changeKyotaku(1)">+</button>
+          </div>
         </div>
       </div>
 

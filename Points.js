@@ -36,8 +36,8 @@ function calculate(isDealer) {
     if (fan >= 5) {
         var m   = MANGAN[fan];
         var ron = isDealer ? m[0] : m[1];
-        r1.innerText = '榮和：' + ron + '點';
-        r2.innerText = isDealer
+        r1.textContent = '榮和：' + ron + '點';
+        r2.textContent = isDealer
             ? '自摸：' + (ron / 3) + ' ALL'
             : '自摸：子' + (ron / 4) + '點，親' + (ron / 2) + '點';
         return;
@@ -48,22 +48,22 @@ function calculate(isDealer) {
     var entry = row ? row[fan - 1] : null;
 
     if (entry === 'invalid') {
-        r1.innerText = '重新選擇';
-        r2.innerText = '重新選擇';
+        r1.textContent = '重新選擇';
+        r2.textContent = '重新選擇';
         return;
     }
 
     if (!entry) {
         var manRon = isDealer ? 12000 : 8000;
-        r1.innerText = '榮和：' + manRon + '點';
-        r2.innerText = isDealer ? '自摸：4000 ALL' : '自摸：子2000點，親4000點';
+        r1.textContent = '榮和：' + manRon + '點';
+        r2.textContent = isDealer ? '自摸：4000 ALL' : '自摸：子2000點，親4000點';
         return;
     }
 
     var ron2  = entry[0];
     var tsumo = entry[1];
-    r1.innerText = '榮和：' + ron2 + '點';
-    r2.innerText  = isDealer
+    r1.textContent = '榮和：' + ron2 + '點';
+    r2.textContent = isDealer
         ? '自摸：' + tsumo + ' ALL'
         : '自摸：子' + tsumo[0] + '點，親' + tsumo[1] + '點';
 }
